@@ -1,13 +1,12 @@
 import { Router } from "express";
-import { getWeekData } from "../controllers/weeks/getWeekData.js";
-import { getPrivateWeekData } from "../controllers/weeks/getPrivateWeekData.js";
+import { authenticate } from "../middleware/authenticate.js";
+
+import {
+  getBabyStateController,
+  getMomStateController,
+} from "../controllers/weeks/weeksController.js";
 
 const weeksRouter = Router();
-
-// PRIVATE
-weeksRouter.get("/private", getPrivateWeekData);
-
-// PUBLIC
-weeksRouter.get("/:weekNumber", getWeekData);
-
+weeksRouter.get("/baby", authenticate, getBabyStateController);
+weeksRouter.get("/mom", authenticate, getMomStateController);
 export default weeksRouter;

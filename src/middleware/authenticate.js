@@ -1,5 +1,3 @@
-// src/middleware/authenticate.js
-
 import createHttpError from "http-errors";
 import { Session } from "../models/session.js";
 import { User } from "../models/user.js";
@@ -17,7 +15,8 @@ export const authenticate = async (req, res, next) => {
     throw createHttpError(401, "Session not found");
   }
 
-  const isAccessTokenExpired = new Date() > new Date(session.accessTokenValidUntil);
+  const isAccessTokenExpired =
+    new Date() > new Date(session.accessTokenValidUntil);
 
   if (isAccessTokenExpired) {
     throw createHttpError(401, "Access token expired");

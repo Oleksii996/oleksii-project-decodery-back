@@ -1,10 +1,5 @@
 import { Schema, model } from "mongoose";
 
-const emotionSchema = new Schema({
-  title: {
-    type: String,
-    required: true,
-  },
-});
+const emotionSchema = new Schema({});
 
-export const Emotion = model("Emotion", emotionSchema);
+export const emotionModel = model("emotion", emotionSchema);
